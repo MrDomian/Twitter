@@ -7,12 +7,12 @@ import Widgets from '../components/Widgets'
 
 const Home: NextPage = () => {
   return (
-    <div>
+    <div className='lg:max-w-6xl mx-auto max-h-screen overflow-hidden'>
       <Head>
         <title>Twitter4Fun</title>
       </Head>
 
-      <main>
+      <main className="grid grid-cols-9">
         <Sidebar />
 
         <Feed />
