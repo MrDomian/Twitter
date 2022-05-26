@@ -21,7 +21,9 @@ function Sidebar() {
         <SidebarRow Icon={MailIcon} title="Messages" />
         <SidebarRow Icon={BookmarkIcon} title="Bookmarks" />
         <SidebarRow Icon={CollectionIcon} title="Lists" />
+        {/* Do zrobienia: rejestracja i/lub logowanie */}
         <SidebarRow Icon={UserIcon} title="Sign In" />
+
         <SidebarRow Icon={DotsCircleHorizontalIcon} title="More" />
     </div>
   )
