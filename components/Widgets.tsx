@@ -14,8 +14,8 @@ function Widgets() {
         {/* Wtyczka Twittera */}
         <TwitterTimelineEmbed
             sourceType="profile"
-            screenName="saurabhnemade"
-            options={{height: 700}}
+            screenName="si_org_pl"
+            options={{height: 500}}
         />
     </div>
   )
