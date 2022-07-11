@@ -15,7 +15,7 @@ function Widgets() {
         <TwitterTimelineEmbed
             sourceType="profile"
             screenName="si_org_pl"
-            options={{height: 500}}
+            options={{height: 700}}
         />
     </div>
   )
