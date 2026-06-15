@@ -2,8 +2,6 @@
 
 Klon Twittera zbudowany z Next.js, Tailwind CSS, Sanity CMS i NextAuth.
 
-**Demo:** https://twitter4fun.vercel.app
-
 ### Uruchomienie lokalne
 
 1. Zainstaluj zależności:
