@@ -1,27 +1,51 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
-import Image from 'next/image'
+import { groq } from 'next-sanity'
 import Feed from '../components/Feed'
+import MobileNav from '../components/MobileNav'
 import Sidebar from '../components/Sidebar'
 import Widgets from '../components/Widgets'
+import { sanityClient } from '../sanity'
+import { Tweet } from '../typings'
 
-const Home: NextPage = () => {
+interface Props {
+  tweets: Tweet[]
+}
+
+const Home: NextPage<Props> = ({ tweets }) => {
   return (
-    <div className='lg:max-w-6xl mx-auto max-h-screen overflow-hidden'>
+    <div className="mx-auto max-h-screen overflow-hidden lg:max-w-6xl xl:max-w-7xl">
       <Head>
         <title>Twitter4Fun</title>
+        <meta name="description" content="Twitter clone built with Next.js and Sanity" />
+        <link rel="icon" href="https://links.papareact.com/drq" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
-      <main className="grid grid-cols-9">
+      <main className="grid grid-cols-4 sm:grid-cols-9">
         <Sidebar />
-
-        <Feed />
-
+        <Feed tweets={tweets} />
         <Widgets />
-
       </main>
+
+      <MobileNav />
     </div>
   )
 }
 
 export default Home
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  const query = groq`*[_type == "tweet" && !blockTweet] {
+    ...,
+    "comments": *[_type == "comment" && references(^._id)] | order(_createdAt asc)
+  } | order(_createdAt desc)`
+
+  const tweets: Tweet[] = await sanityClient.fetch(query)
+
+  return {
+    props: {
+      tweets,
+    },
+  }
+}

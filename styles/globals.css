@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .tweetButton {
+    @apply flex h-9 w-9 cursor-pointer items-center justify-center rounded-full transition duration-200 ease-out hover:bg-blue-50 sm:h-12 sm:w-12;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
