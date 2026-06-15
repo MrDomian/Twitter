@@ -10,7 +10,7 @@ interface Props {
 
 function Feed({ tweets }: Props) {
   return (
-    <div className="col-span-3 flex max-h-screen flex-col overflow-y-scroll border-x scrollbar-hide sm:col-span-5 lg:col-span-5 xl:col-span-6">
+    <div className="col-span-3 flex max-h-screen flex-col overflow-y-scroll border-x scrollbar-hide sm:col-span-5 lg:col-span-5">
       <div className="sticky top-0 z-10 flex items-center justify-between border-b border-gray-200 bg-white bg-opacity-90 backdrop-blur-sm">
         <h1 className="p-4 pb-3 text-lg font-bold sm:p-5 sm:pb-0 sm:text-xl">Home</h1>
         <RefreshIcon

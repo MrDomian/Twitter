@@ -49,27 +49,27 @@ const suggestions = [
 
 function Widgets() {
   return (
-    <div className="mt-2 hidden px-2 lg:col-span-2 lg:inline xl:col-span-1">
-      <div className="sticky top-2 space-y-4">
+    <div className="col-span-2 hidden min-w-0 pr-4 lg:block">
+      <div className="sticky top-2 w-full space-y-4">
         <div className="flex items-center space-x-2 rounded-full bg-gray-100 p-3">
-          <SearchIcon className="h-5 w-5 text-gray-400" />
+          <SearchIcon className="h-5 w-5 shrink-0 text-gray-400" />
           <input
             type="text"
             placeholder="Search Twitter"
-            className="flex-1 bg-transparent outline-none"
+            className="min-w-0 flex-1 bg-transparent outline-none"
           />
         </div>
 
-        <div className="overflow-hidden rounded-2xl bg-gray-50">
+        <div className="w-full rounded-2xl bg-gray-50">
           <h2 className="px-4 py-3 text-xl font-bold">Co się dzieje</h2>
-          {trends.map((trend, i) => (
+          {trends.map((trend) => (
             <div
               key={trend.title}
               className="cursor-pointer px-4 py-3 transition hover:bg-gray-100"
             >
-              <p className="text-xs text-gray-500">{trend.category}</p>
-              <p className="font-bold">{trend.title}</p>
-              <p className="text-xs text-gray-500">{trend.posts}</p>
+              <p className="truncate text-xs text-gray-500">{trend.category}</p>
+              <p className="truncate font-bold">{trend.title}</p>
+              <p className="truncate text-xs text-gray-500">{trend.posts}</p>
             </div>
           ))}
           <button className="w-full px-4 py-3 text-left text-sm text-twitter hover:bg-gray-100">
@@ -77,32 +77,32 @@ function Widgets() {
           </button>
         </div>
 
-        <div className="overflow-hidden rounded-2xl bg-gray-50">
+        <div className="w-full rounded-2xl bg-gray-50">
           <h2 className="px-4 py-3 text-xl font-bold">Kogo obserwować</h2>
           {suggestions.map((user) => (
             <div
               key={user.handle}
-              className="flex items-center justify-between px-4 py-3 hover:bg-gray-100"
+              className="flex items-center justify-between gap-2 px-4 py-3 hover:bg-gray-100"
             >
-              <div className="flex items-center space-x-3">
+              <div className="flex min-w-0 items-center space-x-3">
                 <img
-                  className="h-10 w-10 rounded-full"
+                  className="h-10 w-10 shrink-0 rounded-full"
                   src={user.img}
                   alt={user.name}
                 />
-                <div>
-                  <p className="text-sm font-bold">{user.name}</p>
-                  <p className="text-sm text-gray-500">@{user.handle}</p>
+                <div className="min-w-0">
+                  <p className="truncate text-sm font-bold">{user.name}</p>
+                  <p className="truncate text-sm text-gray-500">@{user.handle}</p>
                 </div>
               </div>
-              <button className="rounded-full bg-black px-4 py-1.5 text-sm font-bold text-white hover:bg-gray-800">
+              <button className="shrink-0 rounded-full bg-black px-3 py-1.5 text-xs font-bold text-white hover:bg-gray-800">
                 Obserwuj
               </button>
             </div>
           ))}
         </div>
 
-        <p className="px-4 text-xs text-gray-400">
+        <p className="text-xs leading-relaxed text-gray-400">
           Trendy są generowane lokalnie — embed Twitter/X nie jest już dostępny publicznie.
         </p>
       </div>

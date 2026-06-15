@@ -15,7 +15,7 @@ interface Props {
 
 const Home: NextPage<Props> = ({ tweets }) => {
   return (
-    <div className="mx-auto max-h-screen overflow-hidden lg:max-w-6xl xl:max-w-7xl">
+    <div className="mx-auto max-h-screen lg:max-w-6xl">
       <Head>
         <title>Twitter4Fun</title>
         <meta name="description" content="Twitter clone built with Next.js and Sanity" />
