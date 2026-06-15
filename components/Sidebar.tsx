@@ -19,7 +19,7 @@ function Sidebar() {
     <div className="col-span-1 flex flex-col items-center px-2 sm:col-span-2 sm:px-4 md:items-start">
       <img
         className="m-3 h-8 w-8 cursor-pointer sm:h-10 sm:w-10"
-        src="https://links.papareact.com/drq"
+        src="/twitter-logo.svg"
         alt="Twitter logo"
       />
       <SidebarRow Icon={HomeIcon} title="Home" />

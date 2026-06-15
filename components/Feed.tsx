@@ -22,13 +22,9 @@ function Feed({ tweets }: Props) {
       <TweetBox />
 
       <div className="pb-16 lg:pb-0">
-        {tweets.length === 0 ? (
-          <p className="p-8 text-center text-gray-500">
-            Brak tweetów. Napisz coś lub dodaj treści w Sanity CMS!
-          </p>
-        ) : (
-          tweets.map((tweet) => <Tweet key={tweet._id} tweet={tweet} />)
-        )}
+        {tweets.map((tweet) => (
+          <Tweet key={tweet._id} tweet={tweet} />
+        ))}
       </div>
     </div>
   )

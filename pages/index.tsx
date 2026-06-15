@@ -6,6 +6,7 @@ import MobileNav from '../components/MobileNav'
 import Sidebar from '../components/Sidebar'
 import Widgets from '../components/Widgets'
 import { sanityClient } from '../sanity'
+import { seedTweets } from '../lib/seedTweets'
 import { Tweet } from '../typings'
 
 interface Props {
@@ -18,7 +19,7 @@ const Home: NextPage<Props> = ({ tweets }) => {
       <Head>
         <title>Twitter4Fun</title>
         <meta name="description" content="Twitter clone built with Next.js and Sanity" />
-        <link rel="icon" href="https://links.papareact.com/drq" />
+        <link rel="icon" href="/twitter-logo.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
 
@@ -41,7 +42,11 @@ export const getServerSideProps: GetServerSideProps = async () => {
     "comments": *[_type == "comment" && references(^._id)] | order(_createdAt asc)
   } | order(_createdAt desc)`
 
-  const tweets: Tweet[] = await sanityClient.fetch(query)
+  const sanityTweets: Tweet[] = await sanityClient.fetch(query)
+
+  const tweets = [...sanityTweets, ...seedTweets].sort(
+    (a, b) => new Date(b._createdAt).getTime() - new Date(a._createdAt).getTime()
+  )
 
   return {
     props: {

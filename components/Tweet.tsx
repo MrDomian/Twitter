@@ -9,6 +9,7 @@ import { useSession } from 'next-auth/react'
 import React, { useState } from 'react'
 import TimeAgo from 'react-timeago'
 import { Tweet as TweetType } from '../typings'
+import { isSeedTweet } from '../lib/seedTweets'
 import Comment from './Comment'
 
 interface Props {
@@ -21,10 +22,29 @@ function Tweet({ tweet }: Props) {
   const [comment, setComment] = useState('')
   const [liked, setLiked] = useState(false)
   const { data: session } = useSession()
+  const seed = isSeedTweet(tweet._id)
 
   async function sendComment(e: React.FormEvent) {
     e.preventDefault()
-    if (!comment.trim() || !session?.user) return
+    if (!comment.trim()) return
+
+    if (seed) {
+      setComments([
+        ...comments,
+        {
+          _id: `local-${Date.now()}`,
+          comment,
+          username: 'Gość',
+          profileImg: 'https://i.pravatar.cc/150?u=guest',
+          _createdAt: new Date().toISOString(),
+        },
+      ])
+      setComment('')
+      setCommentOpen(false)
+      return
+    }
+
+    if (!session?.user) return
 
     const commentToSend = {
       comment,
@@ -79,7 +99,7 @@ function Tweet({ tweet }: Props) {
       <div className="flex justify-between text-gray-500">
         <div
           className="tweetButton group"
-          onClick={() => session?.user ? setCommentOpen(!commentOpen) : undefined}
+          onClick={() => (seed || session?.user) && setCommentOpen(!commentOpen)}
         >
           <ChatIcon className="h-5 w-5 group-hover:text-blue-500" />
           <span className="group-hover:text-blue-500">{comments.length}</span>
@@ -106,7 +126,7 @@ function Tweet({ tweet }: Props) {
         </div>
       </div>
 
-      {commentOpen && session?.user && (
+      {commentOpen && (seed || session?.user) && (
         <form className="flex space-x-2" onSubmit={sendComment}>
           <input
             value={comment}
