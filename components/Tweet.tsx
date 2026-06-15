@@ -1,7 +1,7 @@
 import {
   ChatIcon,
   HeartIcon,
-  RepeatIcon,
+  RefreshIcon,
   UploadIcon,
 } from '@heroicons/react/outline'
 import { HeartIcon as HeartIconSolid } from '@heroicons/react/solid'
@@ -85,7 +85,7 @@ function Tweet({ tweet }: Props) {
           <span className="group-hover:text-blue-500">{comments.length}</span>
         </div>
         <div className="tweetButton group">
-          <RepeatIcon className="h-5 w-5 group-hover:text-green-500" />
+          <RefreshIcon className="h-5 w-5 group-hover:text-green-500" />
           <span className="group-hover:text-green-500">0</span>
         </div>
         <div
